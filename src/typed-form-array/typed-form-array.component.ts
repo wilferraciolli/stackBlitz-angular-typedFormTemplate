@@ -16,8 +16,8 @@ import { UserForm } from './user-form';
   styleUrls: ['./typed-form-array.component.css'],
 })
 export class TypedFormArrayComponent implements OnInit {
-  // myForm!: FormGroup<UserForm>;
-  myForm!: FormGroup;
+  myForm!: FormGroup<UserForm>;
+  // myForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -26,7 +26,7 @@ export class TypedFormArrayComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myForm = this.formBuilder.group({
+    this.myForm = this.formBuilder.group<UserForm>({
       username: this.formBuilder.nonNullable.control('Name'),
       roleIds: this.formBuilder.array([
         this.formBuilder.group({ id: 'id1' }),
@@ -62,11 +62,7 @@ export class TypedFormArrayComponent implements OnInit {
     // patch value will just change whatever was initially declared on ngOninti
 
     this.myForm.patchValue({
-      username: 'New name',
-      // colors: [
-      //   { name: 'red' },
-      //   { name: 'blue' }
-      // ],
+      username: 'New name'
     });
 
     this._addColorsFields(Array.of('brown', 'grey'));
