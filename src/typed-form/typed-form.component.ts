@@ -43,12 +43,17 @@ export class TypedFormComponent implements OnInit {
   }
 
   public setValueForm(): void {
-    // this.myForm.setValue({
-    //   name: 'New name',
-    // });
+    // set value must change everything on the form
+
+    this.myForm.setValue({
+      name: 'New name',
+      colors: [{ name: 'red' }, { name: 'blue' }, { name: 'pink' }],
+    });
   }
 
   public patchForm(): void {
+    // patch value will just change whatever was initially declared on ngOninti
+
     this.myForm.patchValue({
       name: 'New name',
       // colors: [
