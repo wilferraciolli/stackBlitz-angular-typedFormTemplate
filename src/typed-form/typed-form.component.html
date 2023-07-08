@@ -1,0 +1,30 @@
+<div class="center">
+  <h1>My form</h1>
+
+  <form [formGroup]="myForm">
+    <!-- Name -->
+    <input type="text" formControlName="name" />
+
+    <!-- Array -->
+    <ng-container formArrayName="colors">
+      <ng-container
+        *ngFor="let _ of colors.controls; let idx = index"
+        [formGroupName]="idx"
+      >
+        <div class="form-fields">
+          <input type="text" formControlName="name" />
+          <button (click)="removeColor(idx)">X</button>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <button (click)="add()">Add new</button>
+  </form>
+</div>
+<br />
+<!-- Button to set the form -->
+<button (click)="setValueForm()">Set Value form</button>
+<!-- Button to patch the form -->
+<button (click)="patchForm()">Patch form</button>
+
+<pre>{{ myForm.value | json }}</pre>
